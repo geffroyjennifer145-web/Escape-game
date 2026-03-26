@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Escape Game KazLudik</title>
+
+<!-- CSS : tout le style ici -->
+<style>
+  /* Ajoutez ici tous vos styles CSS */
+  body { font-family: Arial, sans-serif; background:#222; color:#fff; margin:20px; }
+  #dialogue { padding:15px; background:#333; border-radius:8px; min-height:150px; margin-bottom:20px; }
+  #character { font-weight:bold; margin-bottom:10px; }
+  #text { margin-bottom:10px; }
+  #question { margin-top:10px; }
+  button { padding:10px 20px; margin:10px; font-size:16px; background:#555; color:#fff; border:none; border-radius:5px; cursor:pointer; }
+  button:hover { background:#777; }
+</style>
+</head>
+<body>
+
+<!-- HTML : structure visible -->
+<h1>Escape Game KazLudik</h1>
+<div id="dialogue">
+  <div id="character"></div>
+  <div id="text"></div>
+</div>
+<div id="question"></div>
+
+<!-- JS : tout le script ici -->
+<script>
+  // Vos scènes ici
+  const scenes = [
+    {
+      dialogue: { speaker: "Rex", text: "Bienvenue dans KazLudik !" },
+      question: null
+    },
+    {
+      dialogue: { speaker: "Zara", text: "C'est immense ici !" },
+      question: null
+    },
+    {
+      dialogue: { speaker: "Léo", text: "Que signifient ces lumières ?" },
+      question: {
+        text: "Que signifient ces lumières clignotantes ?",
+        choices: ["Ambiance normale", "Problème technique", "Virus"],
+        correct: 2
+      }
+    }
+    // Ajoutez toutes vos scènes ici...
+  ];
+
+  let currentScene = 0;
+
+  function showScene(index) {
+    const scene = scenes[index];
+    document.getElementById('character').innerText = scene.dialogue.speaker;
+    document.getElementById('text').innerText = scene.dialogue.text;
+    const questionDiv = document.getElementById('question');
+    questionDiv.innerHTML = '';
+
+    if (scene.question) {
+      const q = scene.question;
+      const questionText = document.createElement('div');
+      questionText.innerText = q.text;
+      questionDiv.appendChild(questionText);
+
+      q.choices.forEach((choice, idx) => {
+        const btn = document.createElement('button');
+        btn.innerText = choice;
+        btn.onclick = () => {
+          if (idx === q.correct) {
+            alert('Bonne réponse !');
+          } else {
+            alert('Mauvaise réponse, essaie encore.');
+          }
+          nextScene();
+        };
+        questionDiv.appendChild(btn);
+      });
+    }
+  }
+
+  function nextScene() {
+    if (currentScene < scenes.length - 1) {
+      currentScene++;
+      showScene(currentScene);
+    } else {
+      document.getElementById('dialogue').innerHTML = "<h2>Fin de l'exemple. Merci d'avoir joué !</h2>";
+      document.getElementById('question').innerHTML = '';
+    }
+  }
+
+  // Démarrer le jeu
+  showScene(currentScene);
+</script>
+
+</body>
+</html>
