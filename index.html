@@ -4,13 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escape Game - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        a.button {
+            padding: 15px 40px;
+            font-size: 18px;
+            background-color: #fff;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        a.button:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Escape Game</h1>
-    <p>This is the homepage for the Escape Game. Here are some useful links:</p>
-    <ul>
-        <li><a href="EscapeGame.html">Start the Escape Game</a></li>
-        <li><a href="todo-list.html">View the To-Do List</a></li>
-    </ul>
+    <h1>🎮 Escape Game</h1>
+    <div class="button-container">
+        <a href="EscapeGame.html" class="button">Play Game</a>
+        <a href="todo-list.html" class="button">Todo List</a>
+    </div>
 </body>
 </html>
